@@ -106,7 +106,7 @@ Once you have a metabolic model and a count matrix, you can use a RAS_computatio
     #%% Compute ras
     ras_adata=ras_object.compute()
 
-The RAS dataset is saved in an anndata.AnnData object,.
+The RAS dataset is saved in an anndata.AnnData object. See `Notebook2 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20computation.ipynb>`_ for more details.
 
 **WARNING:** Make sure that gene annotation for count matrix and metabolic model must be the same.
 
@@ -114,7 +114,7 @@ RAS clustering
 ============================
 
 Once you have computed the RAS dataset, you can perform a cluster analysis, using the Scanpy tool. For example,
-you can use the following code to clusters the cells with the Leiden algorithm. See `Notebook3 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20computation.ipynb>`_ for more details.
+you can use the following code to clusters the cells with the Leiden algorithm. 
 
 .. code-block:: python
 
@@ -125,6 +125,8 @@ you can use the following code to clusters the cells with the Leiden algorithm. 
     sc.tl.umap(ras_adata)
     sc.pl.umap(ras_adata, color=["leiden"])
 
+
+See `Notebook3 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20cluster%20analysis.ipynb>`_ for more details.
 
 Compute fold change between two groups
 ======================================================
