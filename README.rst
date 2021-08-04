@@ -2,7 +2,7 @@
 
 .. raw:: html
 
-    <img src="logoRASPY.png" height="300x">
+    <img src="logo_RASpy.png" height="300x">
 
 =========================================================
 Raspy : Single-Cell Reaction Activity Scores in Python
