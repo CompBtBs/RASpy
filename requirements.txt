@@ -1,10 +1,11 @@
-colour==0.1.5
+pytest==6.2.4
 scanpy==1.7.2
-cobra==0.22.0
 pandas==1.2.4
 lxml==4.6.3
-numpy==1.20.2
 scipy==1.6.2
+colour==0.1.5
+numpy==1.20.2
+cobra==0.22.0
 ipython==7.26.0
 progressbar33==2.4
 scikit_learn==0.24.2
