@@ -112,7 +112,7 @@ RAS clustering
 ============================
 
 Once you have computed the RAS dataset, you can perform a cluster analysis, using the Scanpy tool. For example,
-you can use the following code to clusters the cells with the Leiden algorithm. See `Notebook3 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/Ras%20cluster%20analysis.ipynb>`_ for more details.
+you can use the following code to clusters the cells with the Leiden algorithm. See `Notebook3 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20computation.ipynb>_ for more details.
 
 .. code-block:: python
 
@@ -134,7 +134,7 @@ you can use the computer_diff method to obtain a list of reactions whose RASs re
 
     df=ras_object.compute_diff(ras_adata,name_feature)
 
-where name_feature is the key of the observations grouping to consider. See `Notebook4 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/RAS%20map%20data.ipynb>`_ for more detail.
+where name_feature is the key of the observations grouping to consider. 
 
 Color a metabolic map using RAS fold-change
 ========================================================
@@ -149,9 +149,7 @@ on a metabolic map (in ESCHER svg format) using the colorMap method
     mappa=RAS_map()
     image=mappa.colorMap(mapNetwork,mapNetwork2,df_comparison)
 
-where mapNetwork is the name of the SVG input metabolic map and mapNetwork2 is the name of the SVG output metabolic map.
-
-See `Notebook4 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/RAS%20map%20data.ipynb>`_ for more detail.
+where mapNetwork is the name of the SVG input metabolic map and mapNetwork2 is the name of the SVG output metabolic map. Up regulated reaction are coloured in red, whereas down-regulated reaction are coloured in blue.
 
 *****************************
 Team
