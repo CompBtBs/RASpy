@@ -89,7 +89,7 @@ You can load any metabolic model using any read function from cobrapy tool. For 
    from cobra.io import read_sbml_model
    model=read_sbml_model(name_of_sbml_model)
 
-As example of metabolic model, we have included the RECON3D model from http://bigg.ucsd.edu/models.
+As example of metabolic model, we have included the RECON3D model from http://bigg.ucsd.edu/models, converting the gene annotation both in ENSG and Gene symbol.
 
 
 Compute RAS
