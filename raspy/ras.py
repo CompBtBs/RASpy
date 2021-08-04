@@ -26,8 +26,8 @@ class RAS_computation:
         df_reactions = pd.DataFrame(index=[reaction.id for reaction in model.reactions])
         gene_rules=[reaction.gene_reaction_rule for reaction in model.reactions]
         
-        gene_rules=[el.replace("OR","or").replace("AND","and").replace("(","( ").replace(")"," )") for el in gene_rules]
         
+        gene_rules=[el.replace("OR","or").replace("AND","and").replace("(","( ").replace(")"," )") for el in gene_rules]        
         df_reactions['rule'] = gene_rules
         df_reactions = df_reactions.reset_index()
         df_reactions = df_reactions.groupby('rule').agg(lambda x: sorted(list(x)))
@@ -38,6 +38,13 @@ class RAS_computation:
         self.model = model
         self.count_adata = adata.copy()
         self.genes = self.count_adata.var.index.intersection([gene.id for gene in model.genes])
+        
+        #check if there is one gene at least 
+        if len(self.genes)==0:
+            print("ERROR: no gene of the count matrix is in the metabolic model!")
+            print(" are you sure that the gene annotation is the same for the model and the count matrix?")
+            return -1
+        
         self.cell_ids = list(self.count_adata.obs.index.values)
         self.count_df_filtered = self.count_adata.to_df().T.loc[self.genes]
  
@@ -49,7 +56,7 @@ class RAS_computation:
                 regexp=re.compile(r"\([a-zA-Z0-9-.\s]+\)"),  # regular expression inside a parenthesis
                 print_progressbar=True,    # if True, print the progress bar
                 add_count_metadata=True,   # if True add metadata of cells in the ras adata
-                add_met_metadata=True      # if True add metadata of reactions in the ras_adata 
+                add_met_metadata=True      # if True add metadata from the metabolic model (gpr and compartments of reactions)
                 ):
 
         self.or_function = or_expression
@@ -63,8 +70,7 @@ class RAS_computation:
             i = 0
         
         # for loop on reactions
-        ind = 0
-        
+        ind = 0       
         for rule, reaction_ids in self.dict_rule_reactions.items():
             if len(rule) != 0:
                 # there is one gene at least in the formula
@@ -72,8 +78,7 @@ class RAS_computation:
                 rule_split_elements = list(filter(lambda x: x not in self._logic_operators, rule_split))  # remove of all logical operators
                 rule_split_elements = list(np.unique(rule_split_elements))                                # genes in formula
                 
-                # which genes are in the count matrix?
-                
+                # which genes are in the count matrix?                
                 genes_in_count_matrix = list(set([el for el in rule_split_elements if el in self.genes]))
                 genes_notin_count_matrix = list(set([el for el in rule_split_elements if el not in self.genes]))
 
@@ -97,7 +102,6 @@ class RAS_computation:
                              else:
                                 ras_df.iloc[ind] = self.and_function(matrix, axis=0)
                         else:
-
                             # ho almeno una tonda
                             data = self.count_df_filtered.loc[genes_in_count_matrix]  # dataframe of genes in the GPRs
                             genes = data.index
@@ -123,7 +127,6 @@ class RAS_computation:
             if print_progressbar:
                 pbar.update(i+1)
                 i = i+1
-
         
         if print_progressbar:
             pbar.finish()
@@ -194,6 +197,11 @@ class RAS_computation:
         else:
             #and sequence
             return self.and_function(values)
+        
+"""
+Class to color a metabolic map
+
+"""
     
 class RAS_map():
 
@@ -206,12 +214,12 @@ class RAS_map():
                  df,                            #dataset of reaction to color the map
                  colors=["blue", "red"],        #color scale              #
                  nosignificant_color="grey",    #color of reaction whose differences results not significant
-                 ref_width_value=10,            #pixel of rows
+                 ref_width_value=10,            #dimension of reaction rows
                  nosignificant_width=5,         #dimension of the row of reaction whose differences results not significant
-                 min_val=0,
-                 max_val=10,
-                 unconfined=True,
-                 width_image=1000
+                 min_val=0,                     #minimum width value. The minimum width of the row is min_val*ref_width_value
+                 max_val=10,                    #maximum width value. The maximum width of the row is max_val*ref_width_value
+                 unconfined=True,               #Set unconfined=True to disable max-width confinement of the image.
+                 width_image=1000               #dimension of the image
                  ):
 
   
@@ -261,19 +269,22 @@ class RAS_map():
             image = Image(url=fileMapColor, unconfined =unconfined)
         
         return image
-
     
     def _to_utf8(self,s):
         return s if isinstance(s, str) else s.decode('utf-8') 
 
 
+"""
+Function to evalute possible significant change between the RAS of two groups
+"""
+
 def computeRAS_diff(ras_adata,        #expect normalize and logarithmized  data
                 name_feature,         #name of the feature for which the RAS differences are computed
                 func=np.mean,         #method to aggregate ras values to perform group differences
-                function=lambda x: np.log2(x[0]/x[1]),
-                threshold_min=np.log2(1.2),
-                threshold_max=np.log2(3),
-                which_test="mtest",   
+                function=lambda x: np.log2(x[0]/x[1]), #funcion used to test how much RAS changes between two groups 
+                threshold_min=np.log2(1.2),    #minimum threshold below which there is no significant change between two groups
+                threshold_max=np.log2(3),      #maximum threshold
+                which_test="mtest",   #which statistical test used to test highly differentiated reactions
                 p_min=0.05            #pvalue for statistical t-test
                 ):
 

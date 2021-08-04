@@ -5,15 +5,17 @@ import pandas as pd
 from sklearn import metrics 
 import numpy as np
 
-def rank_reactions_groups(*args, **kwargs):
-    sc.tl.rank_genes_groups(*args, **kwargs)
+"""
+Function to perform a grid search between the hyper-parameters of cluster analysis
+"""
         
 def find_bh(
-        ras_adata,
-        resolutions=[1],
-        n_pcs=[10],
-        n_neighbors=[5],
-        names_of_groud_truth=[]):
+        ras_adata,                         #AnnData object used to store the RAS values
+        resolutions=[1],                   #default range for resolution of Leiden algorithm
+        n_pcs=[10],                        #default range for the number of PCs used to compute the neighboorhood of a cell 
+        n_neighbors=[5],                   #default range for the number of neighboorhoods used to compute the neighboorhood of a cell 
+        names_of_groud_truth=[]            #compute the Normalized Mutual Information of clustering using any element of this list as ground truth
+        ):
 
     ras_adata_clustering=ras_adata.copy()
     
@@ -73,13 +75,24 @@ def find_bh(
 
     return df
 
+"""
+Wrapper to function rank_genes_groups of Scanpy
+"""
+def rank_reactions_groups(*args, **kwargs):
+    sc.tl.rank_genes_groups(*args, **kwargs)
 
+"""
+Function used to perform t-test between two lists
+"""
 def ttest(list1,list2):
 
     [val,pval]=ttest_ind(list1,list2)
     
     return pval
 
+"""
+Function used to perform MannWhitney Utest between two lists
+"""
 def mtest(list1,list2):
 
     if  np.sum(list1)==0 and np.sum(list2)==0:
