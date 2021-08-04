@@ -42,7 +42,7 @@ Main Features
 Examples and Tutorials
 ***********************
 
-To easily understand how to use RASPY, we invite you to try our notebook tutorial tutorial_RASpy.ipynb
+To easily understand how to use RASPY, we invite you to try our notebook tutorial `Tutorial <https://github.com/CompBtBs/RASpy/blob/main/tutorial_RASpy.ipynb>`_
 
 Other examples of use can be found in the notebook_examples directory.
 
@@ -53,13 +53,13 @@ Other examples of use can be found in the notebook_examples directory.
    * - Name
      - Link
    * - How to prepare a count matrix for RAS computation
-     - `Notebook1 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/Pre-processing%20of%20the%20count%20matrix.ipynb>`_
+     - `Notebook1 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Pre-processing%20of%20the%20count%20matrix.ipynb>`_
    * - How to compute a RAS matrix
-     - `Notebook2 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/Ras%20computation.ipynb>`_
+     - `Notebook2 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20computation.ipynb>`_
    * - How to perform RAS cluster analysis
-     - `Notebook3 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/Ras%20cluster%20analysis.ipynb>`_
-   * - How to color a metabolic map
-     - `Notebook4 <https://github.com/compBtBs/Raspy-Single-Cell-Reaction-Activity-Scores-in-Python/blob/main/notebook_examples/RAS%20map%20data.ipynb>`_
+     - `Notebook3 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20cluster%20analysis.ipynb>`_
+   * - How to remove cell cycle effect from RAS matrix
+     - `Notebook4 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Cell%20cycle%20removal%20on%20RAS%20matrix.ipynb>`_
 
 **********************************************
 Available datasets and metabolic models
