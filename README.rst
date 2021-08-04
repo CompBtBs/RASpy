@@ -75,7 +75,9 @@ You can load any count matrix file using any read function from scanpy tool. For
     import scanpy as sc
     adata=sc.read_h5ad(name_of_count_matrix)
 
-The dataset is saved in an anndata.AnnData object.
+The dataset is saved in an anndata.AnnData object. We provided two example of public datasets in the datasets directory. 
+* The  `first dataset  <https://www.ebi.ac.uk/gxa/sc/experiments/E-GEOD-86618/downloads>`_ (E-GEOD-86618), is provided as TPM matrix and considers human lung epithelial cell types involved in the pathogenesis of Idiopathic pulmonary fibrosis (IPF). 
+* The  `second dataset <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110949>`_ (GSE110949), is provided as Raw count matrix, and considers MDA-MB-231 cell line adapted to culture in media containing 0 mM or 2 mM metformin. 
 
 Load a metabolic model
 ============================
@@ -112,7 +114,7 @@ RAS clustering
 ============================
 
 Once you have computed the RAS dataset, you can perform a cluster analysis, using the Scanpy tool. For example,
-you can use the following code to clusters the cells with the Leiden algorithm. See `Notebook3 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20computation.ipynb>_ for more details.
+you can use the following code to clusters the cells with the Leiden algorithm. See `Notebook3 <https://github.com/CompBtBs/RASpy/blob/main/notebook_examples/Ras%20computation.ipynb>`_ for more details.
 
 .. code-block:: python
 
