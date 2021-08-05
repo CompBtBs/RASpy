@@ -35,7 +35,7 @@ Main Features
 
 * RAS computation
 * RAS cluster analysis
-* Differential Reaction Expression analysis
+* Deferentially Expressed Reactions analysis
 * Color a metabolic map (SVG Escher format) using RAS fold-change
 
 ***********************
@@ -75,21 +75,21 @@ You can load any count matrix file using any read function from scanpy tool. For
     import scanpy as sc
     adata=sc.read_h5ad(name_of_count_matrix)
 
-The dataset is saved in an anndata.AnnData object. We provided two example of public datasets in the datasets directory. 
+The dataset is saved in an anndata.AnnData object from Scanpy. We provided two example of public datasets in the datasets directory. 
 * The  `first dataset  <https://www.ebi.ac.uk/gxa/sc/experiments/E-GEOD-86618/downloads>`_ (E-GEOD-86618), is provided as TPM matrix and considers human lung epithelial cell types involved in the pathogenesis of Idiopathic pulmonary fibrosis (IPF). 
 * The  `second dataset <https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE110949>`_ (GSE110949), is provided as Raw count matrix, and considers MDA-MB-231 cell line adapted to culture in media containing 0 mM or 2 mM metformin. 
 
 Load a metabolic model
 ============================
 
-You can load any metabolic model using any read function from cobrapy tool. For example, you can load a SBML model in the following way:
+You can load any metabolic model using any read function from Cobrapy tool. For example, you can load a SBML model in the following way:
 
 .. code-block:: python
 
    from cobra.io import read_sbml_model
    model=read_sbml_model(name_of_sbml_model)
 
-As example of metabolic model, we have included the RECON3D model from http://bigg.ucsd.edu/models, converting the gene annotation both in ENSG and Gene symbol.
+As example of metabolic model, we have included the RECON3D model from http://bigg.ucsd.edu/models, where we convert the gene annotation both in ENSG and Gene symbol.
 
 
 Compute RAS
@@ -136,9 +136,9 @@ you can use the computer_diff method to obtain a list of reactions whose RASs re
 
 .. code-block:: python
 
-    df=ras_object.compute_diff(ras_adata,name_feature)
+    df_comparison=ras_object.compute_diff(ras_adata,name_feature)
 
-where name_feature is the key of the observations grouping to consider. 
+where name_feature is the key of the observations grouping to consider. The object df_comparison is a table reporting the fold change between RASs of the two groups, after the application of a statistical test (t-test by default).
 
 Color a metabolic map using RAS fold-change
 ========================================================
