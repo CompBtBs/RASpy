@@ -99,8 +99,7 @@ Once you have a metabolic model and a count matrix, you can use a RAS_computatio
 
 .. code-block:: python
 
-    from classRASpy import RAS_computation as rc
-    import scanpy as sc
+    from ras import RAS_computation as rc
     #%% inizialize ras object
     ras_object=rc(adata,model)
     #%% Compute ras
