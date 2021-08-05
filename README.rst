@@ -150,8 +150,8 @@ on a metabolic map (in ESCHER svg format) using the colorMap method
 
     from ras import RAS_map
     import numpy as np
-    mappa=RAS_map()
-    image=mappa.colorMap(mapNetwork,mapNetwork2,df_comparison)
+    met_map=RAS_map()
+    image=met_map.colorMap(mapNetwork,mapNetwork2,df_comparison)
 
 where mapNetwork is the name of the SVG input metabolic map and mapNetwork2 is the name of the SVG output metabolic map. Up regulated reaction are coloured in red, whereas down-regulated reaction are coloured in blue.
 
