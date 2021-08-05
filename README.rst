@@ -44,7 +44,7 @@ Examples and Tutorials
 
 To easily understand how to use RASPY, we invite you to try our notebook tutorial `Tutorial <https://github.com/CompBtBs/RASpy/blob/main/tutorial_RASpy.ipynb>`_
 
-Other examples of use can be found in the notebook_examples directory.
+Other examples of use can be found in the `notebook_examples <https://github.com/CompBtBs/RASpy/tree/main/notebook_examples>`_ directory.
 
 .. list-table:: Notebooks
    :widths: 25 15
