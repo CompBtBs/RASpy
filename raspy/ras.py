@@ -53,7 +53,7 @@ class RAS_computation:
                 and_expression=np.nanmin,  # type of operation to do in case of an and expression(min, sum)
                 drop_na_rows=True,         # if True remove the nan rows of the ras  matrix
                 drop_duplicates=False,     # if true, remove duplicates rows
-                regexp=re.compile(r"\([a-zA-Z0-9-.\s]+\)"),  # regular expression inside a parenthesis
+                regexp=re.compile(r"\([a-zA-Z0-9-.:\s]+\)"),  # regular expression inside a parenthesis
                 print_progressbar=True,    # if True, print the progress bar
                 add_count_metadata=True,   # if True add metadata of cells in the ras adata
                 add_met_metadata=True      # if True add metadata from the metabolic model (gpr and compartments of reactions)
