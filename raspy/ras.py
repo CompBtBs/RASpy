@@ -56,7 +56,8 @@ class RAS_computation:
                 regexp=re.compile(r"\([a-zA-Z0-9-.:\s]+\)"),  # regular expression inside a parenthesis
                 print_progressbar=True,    # if True, print the progress bar
                 add_count_metadata=True,   # if True add metadata of cells in the ras adata
-                add_met_metadata=True      # if True add metadata from the metabolic model (gpr and compartments of reactions)
+                add_met_metadata=True,      # if True add metadata from the metabolic model (gpr and compartments of reactions)
+                tag_counmatrix="countmatrix_"  #suffix for information coming from original countmatrix
                 ):
 
         self.or_function = or_expression
@@ -157,7 +158,7 @@ class RAS_computation:
             ras_adata.var["common_gprs"] = reactions_common.loc[ras_df.index]
             ras_adata.var["common_gprs"] = ras_adata.var["common_gprs"].apply(lambda x: ",".join(x))
             for el in self.count_adata.obs.columns:
-                ras_adata.obs["countmatrix_"+el]=self.count_adata.obs[el]
+                ras_adata.obs[tag_countmatrix+el]=self.count_adata.obs[el]
 
         if add_met_metadata:
             if len(self.model.compartments)>0:
