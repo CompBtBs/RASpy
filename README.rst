@@ -5,7 +5,7 @@
     <img src="logo_RASpy.png" height="300x">
 
 =========================================================
-Raspy : Single-Cell Reaction Activity Scores in Python
+Raspy : RASpy: Metabolic Reaction Activity Analysis with Scanpy
 =========================================================
 
 
